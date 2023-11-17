@@ -96,7 +96,7 @@ app.put("/products/:id", async (req, res) => {
   }
 });
 
-//post an item
+//post a product
 app.post("/products", async (req, res) => {
   try {
     const product = await Product.create(req.body);
@@ -107,9 +107,8 @@ app.post("/products", async (req, res) => {
   }
 });
 
-
-//delete
-app.delete('/products/:id', async (req, res) => {
+//delete a product
+app.delete("/products/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const deleted = await Product.findByIdAndDelete(id);
@@ -117,7 +116,7 @@ app.delete('/products/:id', async (req, res) => {
       return res.status(200).send("Product deleted");
     }
     throw new Error("Product not found");
-  }catch (err) {
+  } catch (err) {
     res.status(500).json({ message: err.message });
   }
-})
+});
